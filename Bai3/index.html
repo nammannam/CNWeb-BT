@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cua hang sach ABC</title>
+    <link href="./style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <!-- Header Section --->
+
+    <header>
+      <h1>Cửa hàng sách ABC</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Trang chủ</a></li>
+          <li><a href="#">Sản phẩm</a></li>
+          <li><a href="#">Liên hệ</a></li>
+        </ul>
+      </nav>
+
+      <button id="addProductBtn">Thêm sản phẩm</button>
+
+    </header>
+
+    <!-- Main Content Section --->
+
+
+    <main>
+      <section>
+        <h1>Chào mừng đến với nhà sách ABC</h1>
+        <p>Nhà sách cho những người yêu sách</p>
+      </section>
+
+<!-- Book Articles Section 
+
+Thêm tối thiểu 3 quyển sách với hình ảnh, mô tả ngắn và giá tiền
+Tag <h2> cho tiêu đề sách
+Tag <img> cho hình ảnh bìa sách
+Tag <p> cho mô tả ngắn
+Tag <span> cho giá tiền
+
+--->
+
+<input type="text" id="searchInput" placeholder="Tìm kiếm sách..." />
+<button id="searchButton">Tìm kiếm</button>
+
+      <!-- Form thêm sản phẩm (ẩn mặc định) -->
+      <form id="addProductForm" class="hidden">
+        <h3>Thêm sách mới</h3>
+        <label for="prodTitle">Tiêu đề:</label>
+        <input type="text" id="prodTitle" name="prodTitle" required />
+
+        <label for="prodImage">URL ảnh bìa:</label>
+        <input type="url" id="prodImage" name="prodImage" />
+
+        <label for="prodDesc">Mô tả ngắn:</label>
+        <textarea id="prodDesc" name="prodDesc" rows="3"></textarea>
+
+        <label for="prodPrice">Giá (vd: 150.000 VNĐ):</label>
+        <input type="text" id="prodPrice" name="prodPrice" />
+
+        <button type="submit">Thêm</button>
+      </form>
+
+
+  <div id="product-list">
+
+  <article class="product-item">
+        
+        <img
+          src="https://cdn1.fahasa.com/media/catalog/product/8/9/8934974182375.jpg"
+          alt="Người Đàn Ông Mang Tên OVE"
+        />
+        <h2>Người Đàn Ông Mang Tên OVE</h2>
+        <p>
+          Người Đàn Ông Mang Tên Ove là tiểu thuyết đầu tay của nhà văn Thụy
+          Điển Fredrik Backman, xuất bản năm 2012.
+        </p>
+
+        <span>Giá: 150.000 VNĐ</span>
+  </article>
+
+  <article class="product-item">
+        
+        <img
+          src="https://cdn1.fahasa.com/media/catalog/product/i/m/image_195509_1_36793.jpg"
+          alt="Nhà Giả Kim "
+        />
+        <h2>Nhà Giả Kim</h2>
+        <p>
+          Nhà Giả Kim là tiểu thuyết nổi tiếng nhất của nhà văn Brazil Paulo
+          Coelho, xuất bản lần đầu tiên vào năm 1988 tại Brazil.
+        </p>
+
+        <span>Giá: 150.000 VNĐ</span>
+  </article>
+
+  <article class="product-item">
+        
+        <img
+          src="https://cdn1.fahasa.com/media/catalog/product/i/m/image_217480.jpg"
+          alt="Cây Cam Ngọt Của Tôi"
+        />
+        <h2>Cây Cam Ngọt Của Tôi</h2>
+        <p>
+          Cây Cam Ngọt Của Tôi là một tiểu thuyết bán tự truyện nổi tiếng của
+          nhà văn Brazil José Mauro de Vasconcelos, xuất bản lần đầu tiên vào
+          năm 1968.
+        </p>
+
+        <span>Giá: 150.000 VNĐ</span>
+
+  </article>
+  </div>
+
+<!-- Contact Form Section 
+
+Tạo form liên hệ đơn giản với các trường: Họ và tên, Email, Nội dung, và nút gửi 
+
+--->
+      <h1>Liên hệ với chúng tôi</h1>
+      <form>
+        <label for="name">Họ và tên:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Nội dung:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Gửi</button>
+      </form>
+
+      <section></section>
+    </main>
+
+<!-- Footer Section --->
+
+    <footer>
+      <p>&copy; 2025 Cửa hàng sách ABC. All rights reserved.</p>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
