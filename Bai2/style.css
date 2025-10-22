@@ -1,0 +1,323 @@
+/* General page styles */
+/*
+  Phần này định nghĩa các biến màu chung, reset box-sizing và kiểu chữ mặc định cho toàn trang.
+  - :root chứa các biến màu (brand-bg, brand-accent, v.v.) để dễ tùy chỉnh giao diện.
+  - * { box-sizing: border-box } giúp tính toán padding/border dễ dàng khi bố cục.
+  - body: font-family, màu nền và các thiết lập tối ưu hiển thị chữ.
+*/
+:root{
+  --brand-bg: #2c3e50; /* dark blue-gray */
+  --brand-accent: #e67e22; /* accent color */
+  --text: #333;
+  --muted: #666;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+html,body{
+  height:100%;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  line-height:1.6;
+  color:var(--text);
+  background: #f7f9fb;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Layout container */
+/*
+  Thiết lập vùng chứa chính của nội dung (`main`):
+  - max-width giới hạn chiều rộng để nội dung không quá rộng trên màn hình lớn
+  - margin auto để căn giữa khung nội dung
+  - padding nhỏ để không chạm sát lề trình duyệt
+*/
+main{
+  max-width:960px;
+  margin:24px auto;
+  padding:0 16px;
+}
+
+/* Header */
+/*
+  Phần header chứa tiêu đề trang và menu điều hướng.
+  - background + color: đặt nền tối và chữ trắng cho header
+  - display:flex với flex-direction:column và align-items:center để
+    căn giữa tiêu đề và menu theo chiều ngang
+  - header h1: kích thước chữ và khoảng cách
+  - header nav / ul / li / a: tạo menu ngang mặc định, loại bỏ dấu chấm của list
+*/
+header{
+  background:var(--brand-bg);
+  color:#fff;
+  padding:18px 16px;
+  display:flex;
+  flex-direction:column; /* stack title and nav */
+  align-items:center; /* center children horizontally */
+  text-align:center;
+}
+
+header h1{
+  margin:0 0 8px 0;
+  font-size:1.6rem;
+  text-align: center;
+}
+
+header nav{
+  display:flex;
+  align-items:center;
+  justify-content:center; /* center nav content */
+  width:100%;
+}
+
+header nav ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex; /* horizontal menu */
+  justify-content:center;
+}
+
+header nav ul li{
+  margin-right:20px; /* space between menu items */
+  align-items: center;
+}
+
+header nav ul li:last-child{
+  margin-right:0;
+}
+
+header nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* Book article styles */
+/*
+  Các quy tắc chung cho thẻ bài viết (article):
+  - background, border-radius, box-shadow để tạo "card" nổi
+  - article img: giới hạn kích thước ảnh, giữ tỉ lệ
+  - article p / span: màu văn bản phụ và kiểu chữ cho giá
+*/
+article{
+  background:#fff;
+  border-radius:6px;
+  padding:16px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.06);
+  margin-bottom:16px;
+}
+
+article h2{
+  margin-top:0;
+}
+
+article img{
+  max-width:160px;
+  height:auto;
+  display:block;
+  margin:8px 0 12px 0;
+}
+
+article p{
+  color:var(--muted);
+  margin:0 0 8px 0;
+}
+
+article span{
+  display:inline-block;
+  margin-top:8px;
+  font-weight:700;
+  color:var(--brand-accent);
+}
+
+/* Product list layout */
+/*
+  Mọi thứ liên quan tới danh sách sản phẩm:
+  - #product-list: chứa các item và dùng flex-wrap để xuống hàng khi cần
+  - .product-item: style từng sản phẩm (border, padding, background nhẹ)
+  - Trong .product-item ta dùng flex-direction:column để nội dung xếp theo thứ tự
+    (ảnh -> tiêu đề -> mô tả -> giá) và căn giữa nội dung.
+*/
+#product-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  justify-content:center;
+  margin-top:12px;
+}
+
+/* Prominent hero box for the first section (welcome) */
+/*
+  Hero / ô chào mừng:
+  - Dùng gradient, chữ trắng, bo góc và shadow để nổi bật so với phần còn lại
+  - Áp dụng cho section đầu tiên trong main (main > section:first-of-type)
+*/
+main > section:first-of-type{
+  background: linear-gradient(90deg, rgba(230,126,34,0.95), rgba(240,180,120,0.95));
+  color:#fff;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 8px 24px rgba(44,62,80,0.12);
+  margin-bottom:18px;
+  text-align:center;
+}
+
+main > section:first-of-type p{
+  margin:0;
+  font-size:1.125rem;
+  font-weight:600;
+  color: #fff;
+}
+
+/* Insert a centered "Sản phẩm nổi bật" heading before the product list (CSS-only) */
+/*
+  Pseudo-element #product-list::before được dùng để chèn tiêu đề "Sản phẩm nổi bật"
+  mà không cần sửa file HTML (lưu ý: nội dung này không tốt cho SEO/ARIA nếu cần truy cập bằng
+  screen-reader, khi đó nên thêm thẻ <h2> thật trong HTML).
+*/
+#product-list::before{
+  content: "Sản phẩm nổi bật";
+  display:block;
+  width:100%;
+  text-align:center;
+  font-size:1.4rem;
+  font-weight:800;
+  color:var(--brand-bg);
+  margin:8px 0 10px 0;
+}
+
+.product-item{
+  flex: 1 1 30%; /* ~3 columns on wide screens */
+  min-width:240px;
+  border:1px solid #e6e9ef;
+  padding:14px;
+  border-radius:6px;
+  background:#fafafa;
+  box-shadow:0 1px 2px rgba(0,0,0,0.04);
+  display:flex;
+  flex-direction:column; /* image -> title -> desc */
+  align-items:center;
+  text-align:center;
+  gap:8px;
+}
+
+.product-item h2{
+  font-size:1.15rem;
+  margin:0;
+  font-weight:700;
+}
+
+.product-item p{ color:var(--muted); margin:0 }
+
+.product-item span{ color:var(--brand-accent); font-weight:800 }
+
+.product-item img{ max-width:160px; height:auto; display:block; margin:0 auto }
+
+/* Contact form */
+/*
+  Form liên hệ:
+  - Tạo khung trắng nổi, bo góc, shadow
+  - Giới hạn chiều rộng bằng max-width và căn giữa bằng margin:auto
+  - Input / textarea có padding, viền nhẹ và hiệu ứng focus
+  - Nút gửi có màu nổi bật và hiệu ứng hover
+*/
+form{
+  background:#fff;
+  padding:16px;
+  border-radius:6px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.06);
+  margin:24px auto 32px auto; /* top - right - bottom - left */
+  max-width:420px;
+}
+
+form label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:600;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea{
+  width:100%;
+  padding:8px 10px;
+  border:1px solid #dfe6ee;
+  border-radius:4px;
+  margin-bottom:12px;
+  font-size:0.95rem;
+}
+
+form input:focus, form textarea:focus{
+  outline: none;
+  border-color: var(--brand-accent);
+  box-shadow: 0 0 0 3px rgba(230,126,34,0.12);
+}
+
+form button{
+  background:var(--brand-accent);
+  color:#fff;
+  border:0;
+  padding:10px 16px;
+  border-radius:4px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+form button:hover{ filter:brightness(1.05); transform:translateY(-1px) }
+
+/* Footer */
+/*
+  Chân trang (footer):
+  - Căn giữa nội dung, chữ sáng trên nền tối tương tự header
+  - Kích thước chữ nhỏ hơn để phân biệt với nội dung chính
+*/
+footer{
+  text-align:center;
+  color:#e6eef7;
+  padding:14px 8px;
+  background:var(--brand-bg);
+  font-size:0.9rem;
+}
+
+/* Responsive tweaks */
+/*
+  Các tinh chỉnh responsive để cải thiện hiển thị trên nhiều kích thước màn hình:
+  - breakpoint >=720px: một số article không phải sản phẩm có thể hiển thị ngang
+  - breakpoint <=600px: chuyển product list sang cột, menu thành dọc, ảnh co dãn
+*/
+@media (min-width:720px){
+  main{ padding:0 24px }
+  /* keep non-product articles horizontal on wide screens, but keep .product-item vertical */
+  article:not(.product-item){
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+  }
+  article:not(.product-item) img{ margin:0 }
+}
+
+@media (max-width:520px){
+  header nav ul li{ margin-right:12px }
+  article img{ max-width:120px }
+}
+
+/* Mobile: single column product list, vertical nav */
+@media (max-width:600px){
+  #product-list{ flex-direction:column; gap:12px }
+  .product-item{ flex:1 1 100%; min-width:0 }
+
+  header nav ul{ flex-direction:column; gap:6px }
+  header nav ul li{ margin:6px 0; }
+
+  /* images scale to container */
+  img{ max-width:100%; height:auto }
+}
+
+
